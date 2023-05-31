@@ -1,77 +1,80 @@
-// import 'dart:typed_data';
-import 'package:audioplayers/audioplayers.dart';
-// import 'package:flutter/services.dart';
-import 'package:flutter/material.dart';
+import 'package:flame/experimental.dart';
+// import 'package:flame/extensions.dart';
+import 'package:flame/game.dart';
+
+import 'package:flutter/widgets.dart';
+import 'package:music_animations/drag_handle.dart';
 
 void main() {
-  runApp(MyApp());
+  final audioGame = AudioGame();
+  runApp(GameWidget(game: audioGame));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class AudioGame extends FlameGame with HasDraggableComponents {
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(home: Home());
+  Future<void> onLoad() async {
+    // pool = await FlameAudio.createPool(
+    //   'sfx/fire_2.mp3',
+    //   minPlayers: 3,
+    //   maxPlayers: 4,
+    // );
+    //startBgmMusic();
+    add(MyComponent(position: Vector2(50, 50)));
+    add(MyComponent(position: Vector2(150, 150)));
   }
-}
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+  //Rect get button => Rect.fromLTWH(20, size.y - 300, size.x - 40, 200);
 
-  @override
-  State<Home> createState() => _HomeState();
-}
+  // void startBgmMusic() {
+  //   FlameAudio.bgm.initialize();
+  //   FlameAudio.bgm.play('audio/');
+  // }
 
-class _HomeState extends State<Home> {
-  AudioPlayer player = AudioPlayer();
+  // void fireOne() {
+  //   FlameAudio.play('testaudio.wav');
+  // }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-            title: Text("Play Sound in Flutter App"),
-            backgroundColor: Colors.redAccent),
-        body: Container(
-            margin: EdgeInsets.only(top: 50),
-            child: Wrap(
-              spacing: 10,
-              children: [
-                ElevatedButton.icon(
-                    onPressed: () async {
-                      String audioasset = "audio/testaudio.wav";
-                      // ByteData bytes = await rootBundle
-                      //     .load(audioasset); //load sound from assets
-                      // Uint8List soundbytes = bytes.buffer.asUint8List(
-                      //     bytes.offsetInBytes, bytes.lengthInBytes);
-                      //int result = await player.playBytes(soundbytes);
-                      await player.play(AssetSource(audioasset));
-                      // if (result == 1) {
-                      //   //play success
-                      //   print("Sound playing successful.");
-                      // } else {
-                      //   print("Error while playing sound.");
-                      // }
-                    },
-                    icon: Icon(Icons.play_arrow),
-                    label: Text("Play")),
-                ElevatedButton.icon(
-                    onPressed: () async {
-                      await player.stop();
+  // void fireTwo() {
+  //   pool.start();
+  // }
 
-                      // You can pasue the player
-                      // int result = await player.pause();
+//   @override
+//   void render(Canvas canvas) {
+//     super.render(canvas);
+//     // canvas.drawRect(size.toRect(), black);
 
-                      // if (result == 1) {
-                      //   //stop success
-                      //   print("Sound playing stopped successfully.");
-                      // } else {
-                      //   print("Error on while stopping sound.");
-                      // }
-                    },
-                    icon: Icon(Icons.stop),
-                    label: Text("Stop")),
-              ],
-            )));
-  }
+//     // text.render(
+//     //   canvas,
+//     //   '(click anywhere for 1)',
+//     //   Vector2(size.x / 2, 200),
+//     //   anchor: Anchor.topCenter,
+//     // );
+
+//     // canvas.drawRect(button, gray);
+
+//     // text.render(
+//     //   canvas,
+//     //   'click here for 2',
+//     //   Vector2(size.x / 2, size.y - 200),
+//     //   anchor: Anchor.bottomCenter,
+//     // );
+//   }
+
+//   // @override
+//   // void onDragDown(DragDownEvent event) {
+//   //   super.onDragDown(event);
+//   //   if (!event.handled) {
+//   //     print('Event $event was not handled by any component');
+//   //   }
+//   // }
+
+//   // @override
+//   // void onTapDown(TapDownInfo details) {
+//   //   // if (button.containsPoint(details.eventPosition.game)) {
+//   //   //   fireTwo();
+//   //   // } else {
+//   //   fireOne();
+//   //   //}
+//   // }
+// }
 }

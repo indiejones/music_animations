@@ -30,7 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  audioplayers: ^3.0.1
+  #audioplayers: ^3.0.1
+  flame: 1.6.0  
+  flame_audio: ^1.4.0
+  audioplayers:
 
 
   # The following adds the Cupertino Icons font to your application.
