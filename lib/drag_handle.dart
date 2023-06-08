@@ -1,5 +1,5 @@
 import 'package:flame/components.dart';
-import 'package:flame/experimental.dart';
+import 'package:flame/events.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
@@ -25,6 +25,7 @@ class MyComponent extends PositionComponent with DragCallbacks {
 
   @override
   Future<void> onDragStart(DragStartEvent event) async {
+    super.onDragStart(event);
     _isDragged = true;
 
     if (audioPlayer.state != PlayerState.playing) {
@@ -43,6 +44,7 @@ class MyComponent extends PositionComponent with DragCallbacks {
 
   @override
   void onDragEnd(DragEndEvent event) async {
+    super.onDragEnd(event);
     _isDragged = false;
     audioPlayer.pause();
   }

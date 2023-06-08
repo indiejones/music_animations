@@ -1,5 +1,3 @@
-import 'package:flame/experimental.dart';
-// import 'package:flame/extensions.dart';
 import 'package:flame/game.dart';
 
 import 'package:flutter/widgets.dart';
@@ -10,7 +8,7 @@ void main() {
   runApp(GameWidget(game: audioGame));
 }
 
-class AudioGame extends FlameGame with HasDraggableComponents {
+class AudioGame extends FlameGame {
   @override
   Future<void> onLoad() async {
     // pool = await FlameAudio.createPool(
